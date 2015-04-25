@@ -1,43 +1,43 @@
 " Copyright 2014-2015 Richard Russon (flatcap)
 "
-" Run a .vimlocal file in your current directory
+" Run a .vimlocal file in your current directory or its parents.
 
-let g:vimlocal      = '.vimlocal'
-let g:max_depth     = 50
-let g:stop_at_home  = 1
-let g:home_dir_only = 1
+if (exists('g:loaded_vimlocal') || &cp || (v:version < 700))
+	finish
+endif
+let g:loaded_vimlocal = 1
 
-let s:home_dir      = expand ('~')
+" Set default values
+let g:vimlocal_file      = exists('g:vimlocal_file')      ? g:vimlocal_file      : '.vimlocal'
+let g:vimlocal_max_depth = exists('g:vimlocal_max_depth') ? g:vimlocal_max_depth : 50
+let g:vimlocal_verbose   = exists('g:vimlocal_verbose')   ? g:vimlocal_verbose   : 0
+
+let s:home_dir = expand ('~')
 
 function! vimlocal#Load()
 	let path = getcwd()
 
-	if ((g:home_dir_only == 1) && (path !~ '^' . s:home_dir))
-		" echohl error
-		" echom 'not at home'
-		" echohl none
+	" Not at home
+	if (path !~ '^' . s:home_dir)
 		return
 	endif
 
-	for i in range (0, g:max_depth)
-		let file = path . '/' . g:vimlocal
+	for i in range (0, g:vimlocal_max_depth)
+		let file = path . '/' . g:vimlocal_file
 		if (filereadable (file))
-			" echohl cursorline
-			" echom file
-			" echohl none
-			exec 'source ' . fnameescape (file)
-		else
-			" echohl error
-			" echom path
-			" echohl none
+			let cmd = 'source ' . fnameescape (file)
+			if (g:vimlocal_verbose)
+				echom cmd
+			endif
+			exec cmd
 		endif
 
-		if ((path == s:home_dir) && (g:stop_at_home == 1))
+		" Stop at the home directory, or root
+		if ((path == s:home_dir) || (path == '/'))
 			break
 		endif
-		if (path == '/')
-			break
-		endif
+
+		" Trim the last directory from the path
 		let path = fnamemodify (path, ':h')
 	endfor
 endfunction

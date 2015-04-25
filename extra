@@ -1,0 +1,7 @@
+autocmd.vim
+	autocmd BufNewFile,BufRead .vimlocal  setf vim
+	autocmd BufEnter * call vimlocal#Load()
+
+defmap.vim
+	nmap <silent> <leader>vl :vert split .vimlocal<CR>
+

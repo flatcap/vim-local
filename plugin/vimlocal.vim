@@ -14,7 +14,7 @@ if (!exists('g:vimlocal_verbose'))   | let g:vimlocal_verbose   = 0           | 
 
 let s:home_dir = expand ('~')
 
-function! vimlocal#Load()
+function! LoadVimLocal()
 	" Ignore scratch files, help pages, quickfix windows
 	if ((&bt == 'nofile') || (&bt == 'help') || (&bt == 'quickfix'))
 		return
@@ -48,3 +48,4 @@ function! vimlocal#Load()
 	endfor
 endfunction
 
+nnoremap <silent> <Plug>LoadVimLocal :call <SID>s:LoadVimLocal()<CR>

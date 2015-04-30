@@ -8,9 +8,9 @@ endif
 let g:loaded_vimlocal = 1
 
 " Set default values
-let g:vimlocal_file      = exists('g:vimlocal_file')      ? g:vimlocal_file      : '.vimlocal'
-let g:vimlocal_max_depth = exists('g:vimlocal_max_depth') ? g:vimlocal_max_depth : 50
-let g:vimlocal_verbose   = exists('g:vimlocal_verbose')   ? g:vimlocal_verbose   : 0
+if (!exists('g:vimlocal_file'))      | let g:vimlocal_file      = '.vimlocal' | endif
+if (!exists('g:vimlocal_max_depth')) | let g:vimlocal_max_depth = 50          | endif
+if (!exists('g:vimlocal_verbose'))   | let g:vimlocal_verbose   = 0           | endif
 
 let s:home_dir = expand ('~')
 

@@ -15,9 +15,15 @@ let g:vimlocal_verbose   = exists('g:vimlocal_verbose')   ? g:vimlocal_verbose  
 let s:home_dir = expand ('~')
 
 function! vimlocal#Load()
-	let path = getcwd()
+	" Ignore scratch files, help pages, quickfix windows
+	if ((&bt == 'nofile') || (&bt == 'help') || (&bt == 'quickfix'))
+		return
+	endif
 
-	" Not at home
+	" Full path of the current file
+	let path = expand('%:p')
+
+	" Is is within the user's home?
 	if (path !~ '^' . s:home_dir)
 		return
 	endif

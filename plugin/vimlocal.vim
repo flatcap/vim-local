@@ -14,14 +14,20 @@ if (!exists('g:vimlocal_verbose'))   | let g:vimlocal_verbose   = 0           | 
 
 let s:home_dir = expand ('~')
 
-function! LoadVimLocal()
+function! g:LoadVimLocal()
 	" Ignore scratch files, help pages, quickfix windows
 	if ((&bt == 'nofile') || (&bt == 'help') || (&bt == 'quickfix'))
 		return
 	endif
 
+	" Ignore our script files for safety
+	let file = expand('%:t')
+	if (file == g:vimlocal_file)
+		return
+	endif
+
 	" Full path of the current file
-	let path = expand('%:p')
+	let path = expand('%:p:h')
 
 	" Is is within the user's home?
 	if (path !~ '^' . s:home_dir)
@@ -48,4 +54,5 @@ function! LoadVimLocal()
 	endfor
 endfunction
 
-nnoremap <silent> <Plug>LoadVimLocal :call <SID>s:LoadVimLocal()<CR>
+nnoremap <silent> <Plug>LoadVimLocal :call LoadVimLocal()<CR>
+

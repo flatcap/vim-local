@@ -23,9 +23,9 @@ RUNNING VIMLOCAL                                        *vim-local-run*
 By default, VimLocal will not run.  To enable it, create a mapping or
 autocommand. e.g.
 
-    nmap <silent> <F6> <Plug>LoadVimLocal
+  nmap <silent> <F6> <Plug>LoadVimLocal
 
-    autocmd BufNewFile,BufRead * call LoadVimLocal()
+  autocmd BufNewFile,BufRead * call LoadVimLocal()
 
 CONFIGURATION                                           *vim-local-config*
 
@@ -33,16 +33,16 @@ VimLocal is configured by global variables (defaults shown):
 
 The filename to read:
 
-	let g:vimlocal_file = '.vimlocal'
+  let g:vimlocal_file = '.vimlocal'
 
 The maxiumum number of directories to descend:
 (Note: VimLocal will always stop at your home directory)
 
-	let g:vimlocal_max_depth = 50
+  let g:vimlocal_max_depth = 50
 
 Verbose mode -- show the script name before executing it
 
-	let g:vimlocal_verbose = 0
+  let g:vimlocal_verbose = 0
 
 LICENSE                                                 *vim-local-license*
 
@@ -55,4 +55,4 @@ Grab the latest version or report a bug on GitHub:
 
 http://github.com/flatcap/vim-local
 
- vim:tw=78:ts=4:sw=4:et:ft=help:norl:
+ vim:tw=78:ts=2:sw=2:et:ft=help:norl:

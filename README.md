@@ -26,7 +26,7 @@ VimLocal is configured by global variables:
 
 The filename to read:
 
-	let g:vimlocal_file      = '.vimlocal'
+	let g:vimlocal_file = '.vimlocal'
 
 The number of directories to descend:
 
@@ -34,13 +34,12 @@ The number of directories to descend:
 
 Verbose mode -- show the script name before executing it
 
-	let g:vimlocal_verbose   = 0
+	let g:vimlocal_verbose = 0
 
 ## License
 
-Copyright (c) Richard Russon (flatcap).
-Distributed under the same terms as Vim itself.
-See `:help license`.
+Copyright &copy; Richard Russon (flatcap).
+Distributed under the GPLv3 <http://fsf.org/>
 
 ## See also
 

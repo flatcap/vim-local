@@ -17,7 +17,7 @@ if (!exists ('g:vimlocal_verbose'))   | let g:vimlocal_verbose   = 0           |
 
 let s:home_dir = expand ('~')
 
-function! g:LoadVimLocal()
+function! LoadVimLocal()
 	" Ignore scratch files, help pages and quickfix windows
 	if ((&l:bt == 'nofile') || (&l:bt == 'help') || (&l:bt == 'quickfix'))
 		return

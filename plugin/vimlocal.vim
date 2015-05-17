@@ -60,4 +60,3 @@ endfunction
 
 nnoremap <silent> <Plug>LoadVimLocal :call LoadVimLocal()<CR>
 
-" vim:set noet ts=8 sw=8:
